@@ -19,10 +19,39 @@ describe Tamagotchi do
     end
   end
 
-  # describe '#is_alive' do
-  #   it 'is alive if food level above 0' do
-  #     pet = Tamagotchi.create({:name => 'Bruce'})
-  #     expect(pet.is_alive).to(eq(true))
-  #   end
-  # end
+  describe '#time_passes' do
+    it 'decreases the food, activity and sleep amount by 1' do
+      test_pet = Tamagotchi.create({:name => 'Bruce'})
+      test_pet.time_passes
+      expect(test_pet.food_level()).to(eq(9))
+      expect(test_pet.activity_level()).to(eq(9))
+      expect(test_pet.sleep_level()).to(eq(9))
+    end
+  end
+
+  describe '#is_alive?' do
+    it 'is alive if each level is greater than 0' do
+      test_pet = Tamagotchi.create({:name => 'Bruce'})
+      expect(test_pet.is_alive?).to(eq(true))
+    end
+
+    it 'is dead if food level is 0' do
+      test_pet = Tamagotchi.create({:name => 'Bruce'})
+      test_pet.set_food_level(0)
+      expect(test_pet.is_alive?).to(eq(false))
+    end
+
+    it 'is dead if activity level is 0' do
+      test_pet = Tamagotchi.create({:name => 'Bruce'})
+      test_pet.set_activity_level(0)
+      expect(test_pet.is_alive?).to(eq(false))
+    end
+
+    it 'is dead if sleep level is 0' do
+      test_pet = Tamagotchi.create({:name => 'Bruce'})
+      test_pet.set_sleep_level(0)
+      expect(test_pet.is_alive?).to(eq(false))
+    end
+  end
+
 end
