@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'pg'
 gem 'sinatra'
-gem 'sintra-contrib', :require => 'sinatra/reloader'
+gem 'sinatra-contrib', :require => 'sinatra/reloader'
 gem 'rake'
 gem 'pry'
 
