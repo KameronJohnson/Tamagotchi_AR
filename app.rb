@@ -19,10 +19,35 @@ get '/tamagotchi/:id' do
   erb :tamagotchi
 end
 
-post '/tamagotchi_go' do
+post '/tamagotchi_play' do
   @tamagotchi = Tamagotchi.find(params['id'].to_i)
   @tamagotchi.time_passes
   activity_level = @tamagotchi.set_activity_level(10)
+  alive = @tamagotchi.is_alive?
+  redirect back
+end
+
+post '/tamagotchi_eat' do
+  @tamagotchi = Tamagotchi.find(params['id'].to_i)
+  @tamagotchi.time_passes
+  food_level = @tamagotchi.set_food_level(10)
+  alive = @tamagotchi.is_alive?
+  redirect back
+end
+
+post '/tamagotchi_sleep' do
+  @tamagotchi = Tamagotchi.find(params['id'].to_i)
+  @tamagotchi.time_passes
+  sleep_level = @tamagotchi.set_sleep_level(10)
+  alive = @tamagotchi.is_alive?
+  redirect back
+end
+
+post 'tamagotchi_kill' do
+  @tamagotchi = Tamagotchi.find(params['id'].to_i)
+  food_level = @tamagotchi.set_food_level(0)
+  sleep_level = @tamagotchi.set_sleep_level(0)
+  activity_level = @tamagotchi.set_activity_level(0)
   alive = @tamagotchi.is_alive?
   redirect back
 end
