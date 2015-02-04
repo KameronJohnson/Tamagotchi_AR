@@ -5,7 +5,7 @@ Dir[File.dirname(__FILE__)+'/lib/*.rb'].each { |file| require file}
 
 get '/' do
   @tamagotchis = Tamagotchi.all
-  erb(:index)
+  erb :index
 end
 
 post '/tamagotchi_add' do
@@ -43,11 +43,11 @@ post '/tamagotchi_sleep' do
   redirect back
 end
 
-post 'tamagotchi_kill' do
+post '/tamagotchi_kill' do
   @tamagotchi = Tamagotchi.find(params['id'].to_i)
   food_level = @tamagotchi.set_food_level(0)
   sleep_level = @tamagotchi.set_sleep_level(0)
   activity_level = @tamagotchi.set_activity_level(0)
   alive = @tamagotchi.is_alive?
-  redirect back
+  erb :tamagotchi
 end
