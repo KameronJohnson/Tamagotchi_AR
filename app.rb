@@ -14,7 +14,15 @@ post '/tamagotchi_add' do
   redirect '/'
 end
 
-# get 'tamagotchi/:id' do
-#   @tamagotchi = Tamagotchi.find(params['id'])
-#   # erb :tamagotchi
-# end
+get '/tamagotchi/:id' do
+  @tamagotchi = Tamagotchi.find(params['id'])
+  erb :tamagotchi
+end
+
+post '/tamagotchi_go' do
+  @tamagotchi = Tamagotchi.find(params['id'].to_i)
+  @tamagotchi.time_passes
+  activity_level = @tamagotchi.set_activity_level(10)
+  alive = @tamagotchi.is_alive?
+  redirect back
+end

@@ -1,0 +1,27 @@
+<h1> <%= @tamagotchi.name %> </h1>
+
+<br>
+
+<h2> Is it still breathing? <%= @tamagotchi.alive %> </h2>
+
+<br>
+
+<h3> Food Level: <%= @tamagotchi.food_level %> </h3>
+<h3> Activity Level: <%= @tamagotchi.activity_level %> </h3>
+<h3> Sleep Level: <%= @tamagotchi.sleep_level %> </h3>
+
+<br>
+<br>
+
+  <% if @tamagotchi.alive %>
+    <form action= '/tamagotchi_go' method='post'>
+      <input type='hidden' name='id' value='<%=tamagotchi.id %>'>
+      <button type='submit' class= 'btn btn-sm btn-primary'>Go!</button>
+    </form>
+
+  <% else %>
+
+  <h5> Tamagotchi is dunzo </h5>
+
+  <% end %>
+<br>
