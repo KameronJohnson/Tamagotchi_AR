@@ -1,0 +1,21 @@
+<h1>Your Tamagotchis</h1>
+<br>
+  <% if @tamagotchis.any? %>
+  <ul>
+    <% @tamagotchis.each do |tamagotchi| %>
+      <li> <a href='tamagotchi/<%= tamagotchi.id %>'> <%= tamagotchi.name %> </a></li>
+      <% end %>
+  </ul>
+    <% else %>
+      <h5> No Tamagotchis!</h5>
+      <% end %>
+
+<br>
+<br>
+
+  <form action='/tamagotchi_add' method = 'post'>
+    <label for='name'>Tamagotchi:</label>
+    <input type='text' name='name' id='name'>
+    <button type='submit' class='btn btn-sm btn-primary'>Add</button>
+
+  </form>
